@@ -1,6 +1,7 @@
--- Active: 1702602762730@@127.0.0.1@3306
-CREATE DATABASE IF NOT EXISTS employee_tracker_db;USE employee_tracker_db;
+DROP DATABASE IF EXISTS employee_tracker_db;
+CREATE DATABASE IF NOT EXISTS employee_tracker_db;
 USE employee_tracker_db;
+
 CREATE TABLE IF NOT EXISTS department (
   id INT AUTO_INCREMENT PRIMARY KEY,
   name VARCHAR(30) NOT NULL
