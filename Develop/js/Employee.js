@@ -1,5 +1,5 @@
-const connection = require('./connection');
-const inquirer = require('inquirer');
+const connection = require('../config/connection');
+require('inquirer');
 
 const Employee = {
 displayEmployees: async function () {

@@ -1,3 +1,4 @@
+-- Active: 1702602762730@@127.0.0.1@3306@employee_tracker_db
 DROP DATABASE IF EXISTS employee_tracker_db;
 CREATE DATABASE IF NOT EXISTS employee_tracker_db;
 USE employee_tracker_db;

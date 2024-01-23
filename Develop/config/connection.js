@@ -8,12 +8,17 @@ const connection = mysql.createConnection({
     database: process.env.DB_NAME
 });
 
-connection.query(
-    'SELECT * FROM your_table_name',
-    function(err, results, fields) {
-        console.log(results); // 
+async function testConnection() {
+    try {
+        const [rows, fields] = await connection.query('SELECT * FROM your_table_name');
+        console.log(rows);
         console.log(fields);
+    } catch (err) {
+        console.error('An error occurred while executing the query');
+        console.error(err);
+    } finally {
+        await connection.end();
     }
-)
+}
 
-connection.end();
+module.exports = connection;

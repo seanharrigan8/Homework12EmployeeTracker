@@ -8,6 +8,9 @@ const connection = require('./config/connection');
 const PORT = process.env.PORT || 3001;
 
 
+async function start() {
+    await startPrompt();
+}
 async function startPrompt() {
     const answers = await inquirer.prompt([
         {
@@ -18,37 +21,45 @@ async function startPrompt() {
     }
 ]);
 
-        switch (start) {
+        switch (answers.start) {
             case "View All Departments":
                 await Department.displayDepartments();
+                startPrompt();
                 break;
             case "View All Roles":
                 await Role.displayRoles();
+                startPrompt();
                 break;
             case "View All Employees":
                 await Employee.displayEmployees();
+                startPrompt
                 break;
             case "Add a Department":
                 await Department.addDepartment();
+                startPrompt();
                 break;
             case "Add a Role":
                 await Role.addRole();
+                startPrompt();
                 break;
             case "Add an Employee":
                 await Employee.addEmployee();
+                startPrompt();
                 break;
             case "Update an Employee Role":
                 updateEmployeeRole();
+                startPrompt();
                 break;
                 case "View Salary":
                     await Salary.viewSalary();
+                    startPrompt();
                     break;
             case "Exit":
                 connection.end();
-                break;
+                return;
+                
         }
-        startPrompt();
+     await start();  
         
     }
-    startPrompt();
-   
+    start();
