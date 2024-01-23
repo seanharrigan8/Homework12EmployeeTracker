@@ -2,22 +2,27 @@ const mysql2 = require('mysql2');
 const connection = require('../config/connection');
 
 const Role = {
-    getAll: function(callback) {
-
-        connection.query('SELECT * FROM role', function(err, results, fields) {
-            if (err) throw err;
-            callback(results);
-    });
+    getAll: async function() {
+    try {
+        const [rows, fields] = await connection.execute('SELECT * FROM role');
+        return rows;
+        console.table(rows);
+    } catch (err) {
+        console.log(err);
+    }
 },
-// Rest of the code...
-//get one role by id
-getById: function(id, callback) {
-    connection.query('SELECT * FROM role WHERE id = ?', [id], function(err, results, fields) {
-        if (err) throw err;
-        callback(results[0]);
-    });
+
+getById: async function(id) {
+    try {
+        const [rows, fields] = await connection.execute('SELECT * FROM role WHERE id = ?', [id]);
+        return rows[0];
+        console.table(rows);
+    }
+    catch (err) {
+        console.log(err);
+    }
 },
 };
 
-
 module.exports = Role;
+     

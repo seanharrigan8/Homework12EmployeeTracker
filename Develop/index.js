@@ -7,14 +7,48 @@ const connection = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 
-//Using Role Object
-Role.getAll(function (roles) {
-    console.log(roles);
-});
 
-Role.getById(1, function (role) {
-    console.log(role);
-});
+async function startPrompt() {
+    const answers = await inquirer.prompt([
+        {
+            type: 'list',
+        name: 'start',
+        message: 'What would you like to do?',
+        choices: ['View All Departments', 'View All Roles', 'View All Employees', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employee Role', 'Exit']
+    }
+]);
 
-// Close the connection
-connection.end();
+        switch (start) {
+            case "View All Departments":
+                await Department.displayDepartments();
+                break;
+            case "View All Roles":
+                await Role.displayRoles();
+                break;
+            case "View All Employees":
+                await Employee.displayEmployees();
+                break;
+            case "Add a Department":
+                await Department.addDepartment();
+                break;
+            case "Add a Role":
+                await Role.addRole();
+                break;
+            case "Add an Employee":
+                await Employee.addEmployee();
+                break;
+            case "Update an Employee Role":
+                updateEmployeeRole();
+                break;
+                case "View Salary":
+                    await Salary.viewSalary();
+                    break;
+            case "Exit":
+                connection.end();
+                break;
+        }
+        startPrompt();
+        
+    }
+    startPrompt();
+   
