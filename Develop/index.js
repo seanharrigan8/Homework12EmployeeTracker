@@ -9,6 +9,7 @@ const { startPrompt } = require('./js/prompt');
 const PORT = process.env.PORT || 3001;
 
 
+//menu start prompt
 async function start() {
     const { action } = await inquirer.prompt({
         type: 'list',
@@ -16,7 +17,7 @@ async function start() {
         message: 'What would you like to do?',
         choices: ['View all employees', 'View all departments', 'View all roles', 'Add employee', 'Add department', 'Add role', 'Update employee role', 'Exit'],
     });
-
+//menu options
     switch (action) {
         case 'View all employees':
             await Employee.displayEmployees(startPrompt);
@@ -37,7 +38,7 @@ async function start() {
             await Role.addRole(startPrompt);
             break;
         case 'Update employee role':
-            await Employee.updateEmployeeRole(startPrompt);
+            await Role.updateEmployeeRole(startPrompt);
             break;
         case 'Exit':
             connection.end();

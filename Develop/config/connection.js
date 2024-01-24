@@ -1,6 +1,8 @@
 const mysql = require('mysql2/promise');
 require('dotenv').config();
 
+
+//establishes connection
 async function getConnection() {
 const connection = await mysql.createConnection({
     host: 'localhost',
@@ -10,6 +12,7 @@ const connection = await mysql.createConnection({
 });
  return connection;
 }
+
 
 async function testConnection() {
     const connection = await getConnection();
