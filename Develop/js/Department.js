@@ -1,21 +1,23 @@
 const inquirer = require('inquirer');
-const connection = require('../config/connection');
-
+const getConnection = require('../config/connection');
 
 //DISPLAYING dEPARTMENTS FUNCTION
      
-async function displayDepartments() {
+async function displayDepartments(startPrompt) {
+    const connection = await getConnection();
     try {
         const [rows, fields] = await connection.execute('SELECT * FROM department');
         console.table(rows);
-        
     } catch (err) {
         console.log(err);
+    } finally {
+        startPrompt();
     }
 }
 
 //add department
-async function addDepartment() {
+async function addDepartment(startPrompt) {
+    const connection = await getConnection();
     const answers = await inquirer.prompt([{
         type: 'input',
         name: 'departmentName',
@@ -27,6 +29,9 @@ async function addDepartment() {
         mainMenu();
     } catch (err) {
         console.log(err);
+    }
+    finally {
+        startPrompt();
     }
 }
 

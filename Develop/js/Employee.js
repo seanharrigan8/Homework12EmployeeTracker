@@ -1,9 +1,12 @@
-const connection = require('../config/connection');
-require('inquirer');
+const inquirer = require('inquirer');
+const getConnection = require('../config/connection');
+
 
 const Employee = {
-displayEmployees: async function () {
-    const sql = `SELECT employee.id, employee first_name, employee.last_name, role.title, department.name AS department, role.salary, 
+displayEmployees: async function (startPrompt) {
+    const connection = await getConnection();
+    const sql = `SELECT 
+    employee.id, employee.first_name, employee.last_name, role.title, department.name AS department, role.salary, 
     CONCAT(manager.first_name, ' ', manager.last_name) AS manager
     FROM employee
     JOIN role ON employee.role_id = role.id
@@ -12,15 +15,18 @@ displayEmployees: async function () {
 
     try {
         const [rows, fields] = await connection.execute(sql);
-        console.table(results);
+        console.table(rows);
     } catch (err) {
         console.log(err);
+    } finally { 
+        startPrompt();
     }
     },
     
   
     //add employee function//
-addEmployee: async function() {
+addEmployee: async function(startPrompt) {
+    const connection = await getConnection();
     const answers = await inquirer.prompt([
         {
             type: 'input',
@@ -48,6 +54,8 @@ addEmployee: async function() {
     console.log('Employee added successfully!');
          } catch (err) {
             console.log(err);
+        } finally {
+            startPrompt();
         }
     },
 };
