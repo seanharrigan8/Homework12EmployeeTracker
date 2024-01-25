@@ -1,7 +1,6 @@
 
 # Employee Tracker
 
-![Project Image]()
 
 ## Description
 
@@ -26,15 +25,11 @@ After opening a terminal, run nodemon index.js. Users will see a list of options
 
 ## Video Walkthrough
 
-[Watch the video walkthrough here]()
+Video Here https://drive.google.com/file/d/1FG522l7T_g2JJno0QwYE4s27h4phyoqV/view
 
 ## Contribution
 
-
-
 ## Test
-
-
 
 ## License
 This project is covered under the MIT license.
