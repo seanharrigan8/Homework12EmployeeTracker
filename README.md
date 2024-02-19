@@ -35,5 +35,5 @@ Video Here https://drive.google.com/file/d/1FG522l7T_g2JJno0QwYE4s27h4phyoqV/vie
 This project is covered under the MIT license.
 
 ## Questions
-For any questions, please contact me at seanharrigan8@gmail.com or visit my GitHub page at [seanharrigan8](https://github.com/seanharrigan8).
+For any questions, please contact me at seanharrigan8@gmail.com or visit my GitHub page at www.github.com/seanharrigan8
 or email me at seanharrigan8@gmail.com.
